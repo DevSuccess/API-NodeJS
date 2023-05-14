@@ -28,7 +28,18 @@ const Pokemon = PokemonModel(sequelize, DataTypes);
 
 sequelize
   .sync({ force: true })
-  .then((_) => console.log("La base de donnée a bien été synchronisée!"))
+  .then((_) => {
+      console.log("La base de donnée a bien été synchronisée!")
+    
+      Pokemon.create({
+        name: 'Bulbizzare',
+        hp: 25,
+        cp: 5,
+        picture: 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png',
+        types: ["Plante", "Poison"].join()
+      }).then((bulbizzare) => console.log(bulbizzare.toJSON()));
+  })
+    
   .catch((error) =>
     console.log(`Un erreur lors de la synchroniser : ${error}`)
   );
