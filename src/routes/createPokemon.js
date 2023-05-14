@@ -1,4 +1,4 @@
-const { Pokemon } = require('../db/sequelize')
+const { Pokemon } = require('../data/sequelize')
   
 module.exports = (app) => {
   app.post('/api/pokemons', (req, res) => {
