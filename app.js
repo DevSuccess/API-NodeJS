@@ -1,4 +1,5 @@
 const express = require("express");
+const {success} = require("./Helpers/helper");
 let pokemons = require('./mocks/mock-pokemon');
 
 const app = express();
@@ -11,8 +12,9 @@ app.get('/api/pokemons', (req, res) => {
 });
 app.get('/api/pokemons/:id', (req,res) => {
     const id = parseInt(req.params.id);
+    const message = "Un pokemon à été trouvé";
     const pokemon = pokemons.find((pokemon) => pokemon.id === id);
-    res.json(pokemon);
+    res.json(success(message, pokemon));
 });
 
 app.listen(PORT, () => console.log(`Server running in : http://localhost:${PORT}`));
