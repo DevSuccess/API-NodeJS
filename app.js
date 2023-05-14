@@ -8,7 +8,8 @@ const PORT = 3000;
 app.get('/', (req, res) => res.send('Hello, Express !'));
 app.get('/api/pokemons', (req, res) => {
     const nb =  pokemons.length;
-    res.send(`Il y a ${nb} pokemons`);
+    const message = `La liste des ${nb} pokemons `;
+    res.json(success(message, pokemons));
 });
 app.get('/api/pokemons/:id', (req,res) => {
     const id = parseInt(req.params.id);
