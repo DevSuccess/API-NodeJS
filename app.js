@@ -1,9 +1,14 @@
 const express = require("express");
-const {success} = require("./Helpers/helper");
+const {success} = require("./helpers/helper");
 let pokemons = require('./mocks/mock-pokemon');
 
 const app = express();
 const PORT = 3000;
+
+app.use((req, res, next) => {
+    console.log(`URL: ${req.url}`);
+    next();
+});
 
 app.get('/', (req, res) => res.send('Hello, Express !'));
 app.get('/api/pokemons', (req, res) => {
