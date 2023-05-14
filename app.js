@@ -2,11 +2,31 @@ const express = require("express");
 const morgan = require("morgan");
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
+const {Sequelize} = require('sequelize');
 const {success, getUniqueId} = require("./helpers/helper");
 let pokemons = require('./mocks/mock-pokemon');
 
 const app = express();
 const PORT = 3000;
+
+const sequelize = new Sequelize (
+    'api-node-js',
+    'root',
+    'AllahSeul',
+    {
+        host: 'localhost',
+        dialect: 'mariadb',
+        dialectOptions: {
+            timezone: 'Etc/GMT-2'
+        },
+        logging: false
+    }
+)
+
+sequelize.authenticate()
+    .then(_ => console.log('Connexion au BD'))
+    .catch(error => console.log(`Connexion Impossible, erreur : ${error}`))
+;
 
 // Les middlewares : 
 app
@@ -49,5 +69,7 @@ app.delete('/api/pokemons/:id', (req, res) => {
     pokemons = pokemons.filter(pokemon => pokemon.id !== id)
     const message = `Le pokémon ${pokemonDeleted.name} a bien été supprimé.`
     res.json(success(message, pokemonDeleted))
-  });
+});
+
+
 app.listen(PORT, () => console.log(`Server running in : http://localhost:${PORT}`));
