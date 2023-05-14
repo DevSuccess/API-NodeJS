@@ -18,6 +18,7 @@ sequelize.initDb();
 
 // Ici, nous plaçons nos futurs de terminaison
 require('./src/routes/findAllPokemons')(app);
+require('./src/routes/findPokemonByPk')(app);
 
 app.listen(PORT, () =>
   console.log(`Server running in : http://localhost:${PORT}`)
