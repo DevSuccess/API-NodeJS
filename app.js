@@ -14,6 +14,8 @@ app
   .use(bodyParser.json())
 ;
 
+sequelize.initDb();
+
 app.listen(PORT, () =>
   console.log(`Server running in : http://localhost:${PORT}`)
 );

@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 const PokemonModel = require('../models/pokemon')
 const pokemons = require('../mocks/mock-pokemon')
   
-const sequelize = new Sequelize('pokedex', 'root', '', {
+const sequelize = new Sequelize('api-node-js', 'root', 'AllahSeul', {
   host: 'localhost',
   dialect: 'mariadb',
   dialectOptions: {
