@@ -1,0 +1,19 @@
+{
+  "name": "api-node-js",
+  "version": "1.0.0",
+  "description": "Mon api avec node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevSuccess/API-NodeJS.git"
+  },
+  "author": "TSIDIANY Raharison Muriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevSuccess/API-NodeJS/issues"
+  },
+  "homepage": "https://github.com/DevSuccess/API-NodeJS#readme"
+}
