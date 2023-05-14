@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/DevSuccess/API-NodeJS#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
