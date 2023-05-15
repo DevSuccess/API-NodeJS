@@ -2,6 +2,7 @@ const express = require("express");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const sequelize = require("./src/data/sequelize");
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,7 +10,9 @@ const PORT = process.env.PORT || 3000;
 // Les middlewares :
 app
   .use(favicon(__dirname + "/favicon.ico"))
-  .use(bodyParser.json());
+  .use(bodyParser.json())
+  .use(cors())
+;
 
 sequelize.initDb();
 

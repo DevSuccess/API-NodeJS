@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST || "localhost",
     dialect: "mariadb",
     dialectOptions: {
-      timezone: "Etc/GMT-2",
+      timezone: "Indian/Antananarivo",
     },
     logging: false,
   }
@@ -31,7 +31,7 @@ const initDb = () => {
         cp: pokemon.cp,
         picture: pokemon.picture,
         types: pokemon.types,
-      }).then((pokemon) => console.log(pokemon.toJSON()));
+      }).then((_) => console.log("Pokemon Ajouter avec SUCCES !"));
     });
 
     users.map((user) => {
@@ -39,7 +39,7 @@ const initDb = () => {
         User.create({
           username: user.username,
           password: hash,
-        }).then((user) => console.log(user.toJSON()));
+        }).then((_) => console.log("Utilisateur Ajouter avec SUCCES !"));
       });
     });
     console.log("La base de donnée a bien été initialisée !");
