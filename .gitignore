@@ -5,7 +5,6 @@ dist/
 coverage/
 
 # Fichiers
-.env
 *.log
 *.pid
 *.swp
