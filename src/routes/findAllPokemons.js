@@ -1,6 +1,6 @@
 const { Pokemon } = require("../data/sequelize");
 const { Op } = require("sequelize");
-const auth = require("../middleware/auth");
+const auth = require("../middlewares/auth");
 
 module.exports = (app) => {
   app.get("/api/pokemons", auth, (req, res) => {
