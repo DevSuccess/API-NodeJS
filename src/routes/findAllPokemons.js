@@ -5,13 +5,14 @@ module.exports = (app) => {
   app.get("/api/pokemons", (req, res) => {
     if (req.query.name) {
       const name = req.query.name;
-      return Pokemon.findAll({
+      return Pokemon.findAndCountAll({
         where: {
           name: { [Op.like]: `%${name}%` }
         },
-      }).then((pokemons) => {
-        const message = `Il y a ${pokemons.length} pokémons qui correspond au terme rechercher ${name}`;
-        res.json({ message, data: pokemons });
+        limit: 5
+      }).then(({count, rows}) => {
+        const message = `Il y a ${count} pokémons qui correspond au terme rechercher ${name}`;
+        res.json({ message, data: rows });
       });
     } else {
       Pokemon.findAll()
