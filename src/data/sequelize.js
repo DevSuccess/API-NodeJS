@@ -5,20 +5,25 @@ const UserModel = require("../models/user");
 const pokemons = require("../mocks/mock-pokemon");
 const users = require("../mocks/mock-user");
 
-const sequelize = new Sequelize("api-node-js", "root", "AllahSeul", {
-  host: "localhost",
-  dialect: "mariadb",
-  dialectOptions: {
-    timezone: "Etc/GMT-2",
-  },
-  logging: false,
-});
+const sequelize = new Sequelize(
+  process.env.DB_DBNAME || "api-node-js",
+  process.env.DB_USERNAME || "root",
+  process.env.DB_PASSWORD || "AllahSeul",
+  {
+    host: process.env.DB_HOST || "localhost",
+    dialect: "mariadb",
+    dialectOptions: {
+      timezone: "Etc/GMT-2",
+    },
+    logging: false,
+  }
+);
 
 const Pokemon = PokemonModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
 
 const initDb = () => {
-  return sequelize.sync({ force: true }).then((_) => {
+  return sequelize.sync().then((_) => {
     pokemons.map((pokemon) => {
       Pokemon.create({
         name: pokemon.name,
