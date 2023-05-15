@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST || "localhost",
     dialect: "mariadb",
     dialectOptions: {
-      timezone: "Indian/Antananarivo",
+      timezone: "Etc/GMT+3",
     },
     logging: false,
   }
