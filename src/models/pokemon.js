@@ -5,6 +5,7 @@ const validTypes = [
   "Eau",
   "Vol",
   "Normal",
+  "Insecte",
   "Electrik",
   "Fée",
 ];
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isEmpty: { msg: "La valeur nom ne peux pas être vide" },
+          notEmpty: { msg: "La valeur nom ne peux pas être vide" },
           notNull: { msg: "La valeur du nom sont une propriété requise !" },
         },
       },
@@ -90,8 +91,7 @@ module.exports = (sequelize, DataTypes) => {
             value.split(",").forEach((type) => {
               if (!validTypes.includes(type)) {
                 throw new Error(
-                  "Le type d'un pokemon doit être apporter à la liste suivant: ",
-                  validTypes
+                  `Le type d'un pokemon doit être apporter à la liste suivant: ${validTypes}`
                 );
               }
             });
