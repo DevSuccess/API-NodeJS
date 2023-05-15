@@ -13,6 +13,10 @@ app
 
 sequelize.initDb();
 
+app.get('/', (req, res) => {
+  res.json('Hello, Heroku !');
+});
+
 // Ici, nous plaçons nos futurs de terminaison
 require("./src/routes/findAllPokemons")(app);
 require("./src/routes/findPokemonByPk")(app);
