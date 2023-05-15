@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     username: {
       type: DataTypes.STRING,
+      unique: {
+        msg: 'Le nom est déja pris.'
+      }
     },
     password: {
       type: DataTypes.STRING,
