@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
 const PokemonModel = require("../models/pokemon");
 const UserModel = require("../models/user");
 const pokemons = require("../mocks/mock-pokemon");
@@ -27,11 +28,14 @@ const initDb = () => {
         types: pokemon.types,
       }).then((pokemon) => console.log(pokemon.toJSON()));
     });
-    users.map((user) =>{
-      User.create({
-        username: user.username,
-        password: user.password
-      }).then((user) => console.log(user.toJSON()))
+
+    users.map((user) => {
+      bcrypt.hash(user.password, 10).then((hash) => {
+        User.create({
+          username: user.username,
+          password: hash,
+        }).then((user) => console.log(user.toJSON()));
+      });
     });
     console.log("La base de donnée a bien été initialisée !");
   });
@@ -40,5 +44,5 @@ const initDb = () => {
 module.exports = {
   initDb,
   Pokemon,
-  User
+  User,
 };
